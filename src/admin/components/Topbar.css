@@ -1,0 +1,46 @@
+.admin-topbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.admin-topbar__menu {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 10px;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  background: #fff;
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: #334155;
+}
+
+@media (max-width: 900px) {
+  .admin-topbar__menu {
+    display: inline-flex;
+  }
+}
+
+.admin-topbar__title {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+.admin-topbar__sub {
+  margin: 0.2rem 0 0;
+  font-size: 0.875rem;
+  color: #64748b;
+}

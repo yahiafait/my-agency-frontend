@@ -1,13 +1,215 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* Couleurs logo MAI Tourisme */
+  --color-primary: #0072bc;
+  --color-primary-dark: #005a94;
+  --color-primary-light: #e8f4fc;
+  --color-accent: #f38b20;
+  --color-accent-dark: #d97706;
+  --color-accent-light: #fff4e8;
+  --color-brand-gray: #64748b;
+  --color-text: #0f172a;
+  --color-muted: #334155;
+  --color-bg: #f8fafc;
+  --color-surface: #ffffff;
+  --color-dark: #0a2540;
+  --gradient-brand: linear-gradient(135deg, #0072bc 0%, #005a94 55%, #f38b20 100%);
+  --gradient-brand-soft: linear-gradient(135deg, #e8f4fc 0%, #fff4e8 100%);
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 28px;
+  --shadow-sm: 0 2px 12px rgba(15, 23, 42, 0.06);
+  --shadow-card: 0 8px 32px rgba(15, 23, 42, 0.08);
+  --shadow-hover: 0 20px 48px rgba(15, 23, 42, 0.14);
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Inter', system-ui, sans-serif;
+  --nav-height: 96px;
+  --text-base: 1.0625rem;
+  --leading-body: 1.7;
+  --leading-heading: 1.3;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: 400;
+  line-height: var(--leading-body);
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: auto;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: var(--leading-heading);
+  color: var(--color-text);
+  letter-spacing: -0.015em;
+}
+
+p {
+  line-height: var(--leading-body);
+  color: var(--color-text);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+.container {
+  width: min(1200px, 92%);
+  margin-inline: auto;
+}
+
+.section {
+  padding: 5rem 0;
+}
+
+.section--alt {
+  background: var(--color-surface);
+}
+
+.section__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.75rem;
+}
+
+.section__cta {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
+.section__loading,
+.section__empty {
+  text-align: center;
+  color: var(--color-muted);
+  font-size: 1rem;
+  margin: 2rem 0;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  font-family: inherit;
+  text-decoration: none;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn--primary {
+  background: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(0, 114, 188, 0.35);
+}
+
+.btn--primary:hover {
+  background: var(--color-primary-dark);
+}
+
+.btn--accent {
+  background: var(--color-accent);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(243, 139, 32, 0.4);
+}
+
+.btn--accent:hover {
+  background: var(--color-accent-dark);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--color-text);
+  border-color: rgba(15, 23, 42, 0.12);
+}
+
+.btn--ghost:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.btn--lg {
+  padding: 0.9rem 1.85rem;
+  font-size: 1rem;
+}
+
+.btn--sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.app-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main {
+  flex: 1;
+}
+
+.page {
+  padding: calc(var(--nav-height) + 2rem) 0 4rem;
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.7s ease both;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
 }

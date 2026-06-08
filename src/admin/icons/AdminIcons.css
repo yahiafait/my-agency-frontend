@@ -1,0 +1,10 @@
+@keyframes admin-icon-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.admin-icon-spin {
+  animation: admin-icon-spin 1.1s linear infinite;
+  transform-origin: center;
+}

@@ -1,0 +1,96 @@
+.admin-filter-bar {
+  background: #fff;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  border-radius: 14px;
+  padding: 1rem 1.15rem;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.05);
+}
+
+.admin-filter-bar__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.admin-chip {
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  background: #f8fafc;
+  color: #475569;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.admin-chip:hover {
+  border-color: rgba(0, 114, 188, 0.35);
+  color: #0072bc;
+}
+
+.admin-chip--active {
+  background: linear-gradient(135deg, #0072bc, #005a94);
+  color: #fff;
+  border-color: transparent;
+}
+
+.admin-filter-bar__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: flex-end;
+}
+
+.admin-filter-bar__search {
+  flex: 1 1 220px;
+  position: relative;
+}
+
+.admin-filter-bar__search input {
+  width: 100%;
+  padding: 0.55rem 0.75rem 0.55rem 2.35rem;
+  border-radius: 10px;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  font-size: 0.9rem;
+}
+
+.admin-filter-bar__search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  font-size: 1.1rem;
+}
+
+.admin-filter-bar__dates {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.admin-filter-bar__dates label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.admin-filter-bar__dates input {
+  padding: 0.45rem 0.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 900px) {
+  .admin-filter-bar__row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

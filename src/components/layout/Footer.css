@@ -1,0 +1,103 @@
+.footer {
+  background: var(--color-dark);
+  color: #e2e8f0;
+  margin-top: auto;
+  padding: 4rem 0 0;
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 2rem;
+  padding-bottom: 2.5rem;
+}
+
+.footer__logo {
+  height: 52px;
+  width: auto;
+  margin-bottom: 1rem;
+  object-fit: contain;
+}
+
+.footer__text {
+  color: #94a3b8;
+  line-height: 1.65;
+  font-size: 0.95rem;
+}
+
+.footer__text--small {
+  font-size: 0.85rem;
+  margin-top: 0.35rem;
+  opacity: 0.9;
+}
+
+.footer__text a {
+  color: #94a3b8;
+  text-decoration: none;
+}
+
+.footer__text a:hover {
+  color: var(--color-accent);
+}
+
+.footer h4 {
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  color: #fff;
+}
+
+/* Colonnes Explorer, Agence, Contact — titres et liens en orange */
+.footer__col--accent h4 {
+  color: var(--color-accent);
+}
+
+.footer__col--accent .footer__links a {
+  color: var(--color-accent);
+}
+
+.footer__col--accent .footer__links a:hover {
+  color: #fdba74;
+}
+
+.footer__col--accent .footer__text,
+.footer__col--accent .footer__text a {
+  color: var(--color-accent);
+}
+
+.footer__col--accent .footer__text a:hover {
+  color: #fdba74;
+}
+
+.footer__links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer__links li {
+  margin-bottom: 0.5rem;
+}
+
+.footer__links a {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.footer__links a:hover {
+  color: var(--color-accent);
+}
+
+.footer__bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.25rem 0;
+  color: #64748b;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

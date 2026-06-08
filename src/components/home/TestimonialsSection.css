@@ -1,0 +1,48 @@
+.testimonials__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.testimonial {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-card);
+  margin: 0;
+}
+
+.testimonial p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+}
+
+.testimonial footer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.testimonial img {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.testimonial strong {
+  display: block;
+  font-size: 0.95rem;
+}
+
+.testimonial span {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+
+.testimonial__stars {
+  color: var(--color-accent);
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
