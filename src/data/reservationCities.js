@@ -1,0 +1,50 @@
+/**
+ * Villes proposées à la réservation sans fiche destination dédiée (pas d'image requise).
+ * Les villes déjà présentes dans le catalogue API sont exclues automatiquement.
+ */
+export const extraReservationCities = [
+  // Maroc
+  { city: 'Fès', country: 'Maroc', priceFrom: 699 },
+  { city: 'Meknès', country: 'Maroc', priceFrom: 649 },
+  { city: 'Tanger', country: 'Maroc', priceFrom: 699 },
+  { city: 'Tétouan', country: 'Maroc', priceFrom: 629 },
+  { city: 'Asilah', country: 'Maroc', priceFrom: 599 },
+  { city: 'Larache', country: 'Maroc', priceFrom: 579 },
+  { city: 'Essaouira', country: 'Maroc', priceFrom: 749 },
+  { city: 'Oualidia', country: 'Maroc', priceFrom: 699 },
+  { city: 'El Jadida', country: 'Maroc', priceFrom: 599 },
+  { city: 'Safi', country: 'Maroc', priceFrom: 579 },
+  { city: 'Ouarzazate', country: 'Maroc', priceFrom: 799 },
+  { city: 'Skoura', country: 'Maroc', priceFrom: 749 },
+  { city: 'Zagora', country: 'Maroc', priceFrom: 849 },
+  { city: 'Erfoud', country: 'Maroc', priceFrom: 899 },
+  { city: 'M\'Hamid', country: 'Maroc', priceFrom: 899 },
+  { city: 'Errachidia', country: 'Maroc', priceFrom: 799 },
+  { city: 'Midelt', country: 'Maroc', priceFrom: 649 },
+  { city: 'Ifrane', country: 'Maroc', priceFrom: 699 },
+  { city: 'Azrou', country: 'Maroc', priceFrom: 649 },
+  { city: 'Béni Mellal', country: 'Maroc', priceFrom: 599 },
+  { city: 'Khouribga', country: 'Maroc', priceFrom: 549 },
+  { city: 'Kénitra', country: 'Maroc', priceFrom: 579 },
+  { city: 'Taza', country: 'Maroc', priceFrom: 629 },
+  { city: 'Oujda', country: 'Maroc', priceFrom: 699 },
+  { city: 'Nador', country: 'Maroc', priceFrom: 679 },
+  { city: 'Al Hoceïma', country: 'Maroc', priceFrom: 699 },
+  { city: 'Taroudant', country: 'Maroc', priceFrom: 699 },
+  { city: 'Tiznit', country: 'Maroc', priceFrom: 679 },
+  { city: 'Taghazout', country: 'Maroc', priceFrom: 799 },
+  { city: 'Laâyoune', country: 'Maroc', priceFrom: 949 },
+  // Espagne & proche
+  { city: 'Madrid', country: 'Espagne', priceFrom: 749 },
+  { city: 'Séville', country: 'Espagne', priceFrom: 699 },
+  { city: 'Malaga', country: 'Espagne', priceFrom: 679 },
+  { city: 'Cordoue', country: 'Espagne', priceFrom: 649 },
+  { city: 'Valence', country: 'Espagne', priceFrom: 699 },
+  { city: 'Alicante', country: 'Espagne', priceFrom: 659 },
+  { city: 'Cadix', country: 'Espagne', priceFrom: 629 },
+  // International courant
+  { city: 'Paris', country: 'France', priceFrom: 899 },
+  { city: 'Lisbonne', country: 'Portugal', priceFrom: 799 },
+  { city: 'Istanbul', country: 'Turquie', priceFrom: 849 },
+  { city: 'Dubai', country: 'Émirats arabes unis', priceFrom: 1099 },
+];

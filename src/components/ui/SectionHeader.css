@@ -12,20 +12,20 @@
 .section-header__eyebrow {
   display: inline-block;
   color: var(--color-primary);
-  font-weight: 600;
-  font-size: 0.8125rem;
+  font-weight: 700;
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.5rem;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.65rem;
 }
 
 .section-header__title {
-  font-size: clamp(1.75rem, 3vw, 2.35rem);
-  margin-bottom: 0.6rem;
+  font-size: clamp(2rem, 4vw, 2.85rem);
+  margin-bottom: 0.75rem;
 }
 
 .section-header__subtitle {
   color: var(--color-muted);
-  font-size: 1.0625rem;
+  font-size: clamp(1.0625rem, 1.8vw, 1.2rem);
   line-height: 1.65;
 }

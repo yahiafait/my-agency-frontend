@@ -6,32 +6,25 @@ import { resolveMediaUrl } from '../utils/mediaUrl';
 export function enrichPackage(apiRow) {
   const dest = apiRow.destination;
   const destinationId = dest?.id ?? apiRow.destinationId ?? null;
-  const mockMatch =
-    mockPackages.find((m) => m.id === apiRow.id) ||
-    (destinationId != null
-      ? mockPackages.find((m) => m.destinationId === Number(destinationId))
-      : null);
-
-  const imageFallback =
-    apiRow.imageUrl || mockMatch?.imageUrl || dest?.imageUrl || '';
 
   return {
-    ...mockMatch,
-    ...apiRow,
     id: apiRow.id,
-    title: apiRow.title ?? mockMatch?.title,
-    description: apiRow.description ?? mockMatch?.description,
-    durationDays: apiRow.durationDays ?? mockMatch?.durationDays ?? 1,
-    price: Number(apiRow.price ?? mockMatch?.price ?? 0),
-    imageUrl: resolveMediaUrl(imageFallback),
-    featured: Boolean(apiRow.featured ?? mockMatch?.featured),
-    destinationId: destinationId != null ? Number(destinationId) : mockMatch?.destinationId,
+    title: apiRow.title,
+    description: apiRow.description,
+    durationDays: apiRow.durationDays,
+    price: Number(apiRow.price),
+    imageUrl: resolveMediaUrl(apiRow.imageUrl || dest?.imageUrl || ''),
+    featured: Boolean(apiRow.featured),
+    destinationId: destinationId != null ? Number(destinationId) : null,
     destination: dest
-      ? { city: dest.city, country: dest.country, name: dest.name }
-      : mockMatch?.destination,
-    hotelsCount: Array.isArray(apiRow.hotels)
-      ? apiRow.hotels.length
-      : mockMatch?.hotelsCount ?? 0,
+      ? {
+          city: dest.city,
+          country: dest.country,
+          name: dest.name,
+          imageUrl: resolveMediaUrl(dest.imageUrl),
+        }
+      : null,
+    hotelsCount: Array.isArray(apiRow.hotels) ? apiRow.hotels.length : 0,
   };
 }
 

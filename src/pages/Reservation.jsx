@@ -1,7 +1,10 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
-import { getDestinationById } from '../data/mockData';
-import { fetchDestinationsCatalog } from '../services/destinationCatalog';
+import {
+  fetchReservationDestinations,
+  fetchDestinationById,
+  isExtraDestinationId,
+} from '../services/destinationCatalog';
 import { fetchPackagesCatalog } from '../services/packageCatalog';
 import { images } from '../data/images';
 import { agencyInfo } from '../data/agencyInfo';
@@ -28,10 +31,6 @@ export default function Reservation() {
   const [destinations, setDestinations] = useState([]);
   const [packages, setPackages] = useState([]);
 
-  useEffect(() => {
-    fetchDestinationsCatalog().then(setDestinations);
-    fetchPackagesCatalog().then(setPackages);
-  }, []);
   const [searchParams] = useSearchParams();
   const preselectedDest = searchParams.get('destination');
   const preselectedPkg = searchParams.get('package');
@@ -41,6 +40,40 @@ export default function Reservation() {
     destinationId: preselectedDest || '',
     packageId: preselectedPkg || '',
   });
+
+  useEffect(() => {
+    fetchReservationDestinations().then(setDestinations);
+    fetchPackagesCatalog().then(setPackages);
+  }, []);
+
+  useEffect(() => {
+    if (!preselectedPkg || packages.length === 0) return;
+    const pkg = packages.find((p) => String(p.id) === String(preselectedPkg));
+    if (!pkg) return;
+    setForm((prev) => ({
+      ...prev,
+      packageId: String(pkg.id),
+      destinationId: pkg.destinationId ? String(pkg.destinationId) : prev.destinationId,
+    }));
+  }, [preselectedPkg, packages]);
+
+  useEffect(() => {
+    const destId = form.destinationId;
+    if (!destId || isExtraDestinationId(destId)) return;
+    if (destinations.some((d) => String(d.id) === String(destId))) return;
+
+    let cancelled = false;
+    fetchDestinationById(destId).then((dest) => {
+      if (!cancelled && dest) {
+        setDestinations((prev) =>
+          prev.some((d) => d.id === dest.id) ? prev : [...prev, dest]
+        );
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [form.destinationId, destinations]);
   const [submitted, setSubmitted] = useState(false);
   const [reference, setReference] = useState('');
   const [submitting, setSubmitting] = useState(false);
@@ -50,13 +83,14 @@ export default function Reservation() {
     ? packages.find((p) => String(p.id) === String(form.packageId))
     : null;
   const selectedDestination = form.destinationId
-    ? destinations.find((d) => String(d.id) === String(form.destinationId)) ||
-      getDestinationById(form.destinationId)
+    ? destinations.find((d) => String(d.id) === String(form.destinationId))
     : null;
 
-  const sideImage = selectedDestination?.imageUrl
-    || selectedPackage?.imageUrl
-    || images.hero;
+  const sideImage =
+    selectedPackage?.imageUrl ||
+    selectedDestination?.imageUrl ||
+    selectedPackage?.destination?.imageUrl ||
+    '';
 
   const estimatedTotal = useMemo(() => {
     if (selectedPackage) {
@@ -73,23 +107,40 @@ export default function Reservation() {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
+  const packageMatchesDestination = (pkg) => {
+    if (!form.destinationId) return true;
+    if (isExtraDestinationId(form.destinationId)) {
+      const city = selectedDestination?.city?.toLowerCase();
+      return city && pkg.destination?.city?.toLowerCase() === city;
+    }
+    return pkg.destinationId === Number(form.destinationId);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitError(null);
     const ref = `MT-${Date.now().toString(36).toUpperCase()}`;
+    const extraCity = isExtraDestinationId(form.destinationId) ? selectedDestination : null;
+    const userNotes = form.notes?.trim() || '';
+    const notes = extraCity
+      ? [t('pages.reservation.extraCityNote', { city: extraCity.city, country: extraCity.country }), userNotes]
+          .filter(Boolean)
+          .join('\n')
+      : userNotes || null;
+
     const payload = {
       reference: ref,
       firstName: form.firstName.trim(),
       lastName: form.lastName.trim(),
       email: form.email.trim(),
       phone: form.phone?.trim() ? form.phone.trim() : null,
-      destinationId: form.destinationId ? Number(form.destinationId) : null,
+      destinationId: extraCity || !form.destinationId ? null : Number(form.destinationId),
       packageId: form.packageId ? Number(form.packageId) : null,
       startDate: form.startDate,
       endDate: form.endDate,
       guests: Number(form.guests) || 1,
       travelClass: form.travelClass,
-      notes: form.notes?.trim() ? form.notes.trim() : null,
+      notes,
       estimatedTotal,
     };
 
@@ -169,7 +220,7 @@ export default function Reservation() {
 
           <div className="reservation-summary">
             <h3>{t('pages.reservation.summary')}</h3>
-            {(selectedPackage || selectedDestination) && (
+            {(selectedPackage || selectedDestination) && sideImage && (
               <div className="reservation-summary__preview">
                 <img src={sideImage} alt="" className="reservation-summary__thumb" />
               </div>
@@ -269,11 +320,28 @@ export default function Reservation() {
               {t('pages.reservation.destination')}
               <select name="destinationId" value={form.destinationId} onChange={handleChange}>
                 <option value="">{t('pages.reservation.optDest')}</option>
-                {destinations.map((d) => (
-                  <option key={d.id} value={d.id}>
-                    {d.name}
-                  </option>
-                ))}
+                {destinations.some((d) => !d.isExtraCity) && (
+                  <optgroup label={t('pages.reservation.destCatalog')}>
+                    {destinations
+                      .filter((d) => !d.isExtraCity)
+                      .map((d) => (
+                        <option key={d.id} value={d.id}>
+                          {d.name}
+                        </option>
+                      ))}
+                  </optgroup>
+                )}
+                {destinations.some((d) => d.isExtraCity) && (
+                  <optgroup label={t('pages.reservation.destOtherCities')}>
+                    {destinations
+                      .filter((d) => d.isExtraCity)
+                      .map((d) => (
+                        <option key={d.id} value={d.id}>
+                          {d.name}
+                        </option>
+                      ))}
+                  </optgroup>
+                )}
               </select>
             </label>
             <label>
@@ -281,7 +349,7 @@ export default function Reservation() {
               <select name="packageId" value={form.packageId} onChange={handleChange}>
                 <option value="">{t('pages.reservation.optPkg')}</option>
                 {packages
-                  .filter((p) => !form.destinationId || p.destinationId === Number(form.destinationId))
+                  .filter(packageMatchesDestination)
                   .map((p) => (
                     <option key={p.id} value={p.id}>
                       {p.title} — {p.price} €

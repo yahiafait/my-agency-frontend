@@ -6,6 +6,7 @@ import ProtectedAdminRoute from './components/auth/ProtectedAdminRoute';
 import ProtectedAdminOnlyRoute from './components/auth/ProtectedAdminOnlyRoute';
 import AdminLayout from './admin/layouts/AdminLayout';
 import DashboardMessages from './admin/pages/DashboardMessages';
+import DashboardReservations from './admin/pages/DashboardReservations';
 import DashboardManagers from './admin/pages/DashboardManagers';
 import DashboardDestinations from './admin/pages/DashboardDestinations';
 import DashboardHotels from './admin/pages/DashboardHotels';
@@ -38,6 +39,7 @@ function App() {
             >
               <Route index element={<Navigate to="messages" replace />} />
               <Route path="messages" element={<DashboardMessages />} />
+              <Route path="reservations" element={<DashboardReservations />} />
               <Route
                 path="managers"
                 element={

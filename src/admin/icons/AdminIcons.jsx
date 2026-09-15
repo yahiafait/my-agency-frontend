@@ -88,7 +88,7 @@ export function IconChevronRight({ className }) {
 export function IconLoader({ className }) {
   return (
     <svg
-      className={`admin-icon-spin ${className || ''}`}
+      className={className}
       width="1.25em"
       height="1.25em"
       viewBox="0 0 24 24"
@@ -96,10 +96,14 @@ export function IconLoader({ className }) {
       stroke="currentColor"
       strokeWidth="2"
       strokeLinecap="round"
+      strokeLinejoin="round"
       aria-hidden
     >
-      <path d="M12 2a10 10 0 0 1 10 10" opacity="0.25" />
-      <path d="M12 2a10 10 0 0 1 10 10" strokeDasharray="31.4 31.4" />
+      {/* Hourglass (statique) */}
+      <path d="M6 2h12" />
+      <path d="M6 22h12" />
+      <path d="M8 2v6c0 2 2 3 4 4-2 1-4 2-4 4v6" />
+      <path d="M16 2v6c0 2-2 3-4 4 2 1 4 2 4 4v6" />
     </svg>
   );
 }

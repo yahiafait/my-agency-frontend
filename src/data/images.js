@@ -3,6 +3,10 @@ export const logo = '/images/logo.png';
 
 export const images = {
   logo: '/images/logo.png',
+  /** Logo coloré — utilisé dans la navbar */
+  logoColor: '/images/logo-color.png',
+  /** Logo blanc — utilisé dans le footer sombre */
+  logoWhite: '/images/logo-white.png',
   /** Bannière d’accueil (Home) */
   hero: '/images/hero-banner.png',
   marrakech: '/images/marrakech.png',

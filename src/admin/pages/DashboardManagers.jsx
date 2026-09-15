@@ -6,6 +6,11 @@ import {
   updateManager,
 } from '../services/managerService';
 import { IconUsers, IconPlus, IconEdit, IconTrash, IconLoader } from '../icons/AdminIcons';
+import {
+  extractApiError,
+  staffPasswordError,
+  STAFF_PASSWORD_RULES_TEXT,
+} from '../../utils/passwordPolicy';
 import './DashboardStaff.css';
 
 const EMPTY_FORM = {
@@ -57,6 +62,16 @@ export default function DashboardManagers() {
     e.preventDefault();
     setSaving(true);
     setError('');
+
+    if (!editingId || form.password) {
+      const pwdErr = staffPasswordError(form.password);
+      if (pwdErr) {
+        setError(pwdErr);
+        setSaving(false);
+        return;
+      }
+    }
+
     try {
       if (editingId) {
         const payload = {
@@ -73,7 +88,7 @@ export default function DashboardManagers() {
       resetForm();
       await load();
     } catch (err) {
-      setError(err.response?.data?.message || 'Enregistrement impossible.');
+      setError(extractApiError(err, 'Enregistrement impossible.'));
     } finally {
       setSaving(false);
     }
@@ -186,11 +201,13 @@ export default function DashboardManagers() {
                 <input
                   type="password"
                   required={!editingId}
-                  minLength={6}
+                  minLength={8}
+                  autoComplete="new-password"
                   value={form.password}
                   onChange={(e) => setForm({ ...form, password: e.target.value })}
                 />
               </label>
+              <p className="admin-staff__password-hint">{STAFF_PASSWORD_RULES_TEXT}</p>
               <div className="admin-staff__actions">
                 <button type="submit" className="admin-staff__btn-primary" disabled={saving}>
                   {saving ? <IconLoader /> : <IconPlus />}

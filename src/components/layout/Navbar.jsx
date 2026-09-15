@@ -36,7 +36,7 @@ export default function Navbar() {
       <div className="navbar__inner container">
         <Link to="/" className="navbar__brand" onClick={() => setMenuOpen(false)}>
           <span className="navbar__logo-wrap">
-            <img src={images.logo} alt="MAI Tourisme" className="navbar__logo-img" />
+            <img src={images.logoColor} alt="MAI Tourisme" className="navbar__logo-img" />
           </span>
         </Link>
 

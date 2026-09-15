@@ -13,7 +13,7 @@ export default function Destinations() {
     let cancelled = false;
     fetchDestinationsCatalog()
       .then((data) => {
-        if (!cancelled) setItems(data);
+        if (!cancelled) setItems(data.filter((d) => d.imageUrl));
       })
       .finally(() => {
         if (!cancelled) setLoading(false);

@@ -78,8 +78,8 @@ export default function AdminLogin() {
         </form>
 
         <p className="admin-login__hint">
-          Admin : <code>admin@maitourism.ma</code> — Managers : <code>manager1@</code> /{' '}
-          <code>manager2@maitourism.ma</code> (mot de passe démo : <code>manager2025</code>)
+          Admin : <code>admin@maitourism.ma</code> / <code>MaiTourisme2025!</code> — Managers :{' '}
+          <code>manager1@</code> / <code>manager2@maitourism.ma</code> / <code>Manager2025!</code>
         </p>
       </div>
       </div>

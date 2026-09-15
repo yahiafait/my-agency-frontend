@@ -10,7 +10,11 @@ export default function DestinationCard({ destination }) {
   return (
     <article className={`dest-card${featured ? ' dest-card--featured' : ''}`}>
       <div className="dest-card__media">
-        <img src={resolveMediaUrl(imageUrl)} alt={name} loading="lazy" />
+        {imageUrl ? (
+          <img src={resolveMediaUrl(imageUrl)} alt={name} loading="lazy" />
+        ) : (
+          <div className="dest-card__placeholder" aria-hidden="true" />
+        )}
         {featured && <span className="dest-card__badge">{t('common.popular')}</span>}
       </div>
       <div className="dest-card__body">

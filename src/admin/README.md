@@ -37,9 +37,11 @@ Les routes admin sont **hors** `MainLayout` (pas de navbar/footer public).
 
 | Rôle | Email | Mot de passe | Accès |
 |------|-------|--------------|--------|
-| Admin | `admin@maitourism.ma` | `maitourism2025` | Inbox + managers + destinations + hôtels + forfaits |
-| Manager 1 | `manager1@maitourism.ma` | `manager2025` | Inbox + destinations + hôtels + forfaits |
-| Manager 2 | `manager2@maitourism.ma` | `manager2025` | Inbox + destinations + hôtels + forfaits |
+| Admin | `admin@maitourism.ma` | `MaiTourisme2025!` | Inbox + managers + destinations + hôtels + forfaits |
+| Manager 1 | `manager1@maitourism.ma` | `Manager2025!` | Inbox + destinations + hôtels + forfaits |
+| Manager 2 | `manager2@maitourism.ma` | `Manager2025!` | Inbox + destinations + hôtels + forfaits |
+
+**Politique mot de passe staff** : 8 caractères min., majuscule, minuscule, chiffre et caractère spécial (validée à la création / modification manager et au changement de mot de passe).
 
 Connexion : `POST /api/auth/staff/login` → token Bearer (stocké en session).
 

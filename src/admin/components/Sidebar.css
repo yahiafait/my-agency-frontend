@@ -15,10 +15,20 @@
   gap: 0.5rem;
 }
 
+.admin-sidebar__brand-logo {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 0.35rem 0.55rem;
+  border-radius: 10px;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  text-decoration: none;
+}
+
 .admin-sidebar__brand img {
-  filter: brightness(0) invert(1);
-  max-width: 140px;
+  max-width: 130px;
   height: auto;
+  display: block;
 }
 
 .admin-sidebar__badge {

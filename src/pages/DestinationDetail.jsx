@@ -117,8 +117,11 @@ export default function DestinationDetail() {
                   {destination.durationSuggestion}
                 </p>
               )}
-              <Link to="/reservation" className="btn btn--primary btn--lg">
-                {t('pages.destDetail.book')}
+              <Link
+                to={`/reservation?destination=${destination.id}`}
+                className="btn btn--primary btn--lg"
+              >
+                {t('pages.destDetail.bookTrip')} — {destination.city}
               </Link>
             </div>
           </aside>

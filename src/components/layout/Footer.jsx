@@ -11,7 +11,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="container footer__grid">
         <div className="footer__brand-col">
-          <img src={images.logo} alt="Mai Tourism" className="footer__logo" />
+          <img src={images.logoWhite} alt="Mai Tourism" className="footer__logo" />
           <p className="footer__text">
             {t('footer.tagline')} {agencyInfo.foundedYear}.
           </p>
@@ -31,7 +31,6 @@ export default function Footer() {
           <ul className="footer__links">
             <li><Link to="/about">{t('footer.about')}</Link></li>
             <li><Link to="/contact">{t('footer.contact')}</Link></li>
-            <li><Link to="/admin/messages">{t('footer.admin')}</Link></li>
           </ul>
         </div>
         <div className="footer__col footer__col--accent">

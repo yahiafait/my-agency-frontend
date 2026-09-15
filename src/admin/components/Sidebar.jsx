@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { IconInbox, IconExternal, IconLogout, IconGlobe, IconUsers } from '../icons/AdminIcons';
 import { useAdminAuth } from '../../context/AdminAuthContext';
 import { images } from '../../data/images';
@@ -17,7 +17,9 @@ export default function Sidebar({ onMobileClose, onLogout }) {
   return (
     <aside className="admin-sidebar">
       <div className="admin-sidebar__brand">
-        <img src={images.logo} alt="MAI Tourisme" width={120} height={40} />
+        <Link to="/admin/messages" className="admin-sidebar__brand-logo" onClick={close}>
+          <img src={images.logo} alt="MAI Tourisme" width={130} height={42} />
+        </Link>
         <span className="admin-sidebar__badge">{badge}</span>
         {displayName && <span className="admin-sidebar__user">{displayName}</span>}
       </div>
@@ -26,7 +28,13 @@ export default function Sidebar({ onMobileClose, onLogout }) {
         <p className="admin-sidebar__section">Activité</p>
         <NavLink to="/admin/messages" className={linkClass} end onClick={close}>
           <IconInbox />
-          Boîte de réception
+          Messages contact
+        </NavLink>
+        <NavLink to="/admin/reservations" className={linkClass} onClick={close}>
+          <span className="admin-sidebar__icon" aria-hidden>
+            📝
+          </span>
+          Réservations site
         </NavLink>
         <NavLink to="/admin/destinations" className={linkClass} onClick={close}>
           <IconGlobe />

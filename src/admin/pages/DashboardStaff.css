@@ -156,6 +156,17 @@
   border-left: 3px solid var(--staff-orange);
 }
 
+.admin-staff__password-hint {
+  margin: -0.35rem 0 0;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--staff-muted);
+  padding: 0.5rem 0.65rem;
+  background: #f0f9ff;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 114, 188, 0.12);
+}
+
 .admin-staff__form {
   display: flex;
   flex-direction: column;
